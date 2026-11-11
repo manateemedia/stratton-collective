@@ -1,0 +1,63 @@
+import "./globals.css";
+import { SITE } from "@/lib/site";
+import { TOWNS } from "@/lib/towns";
+import { Header, Footer, StickyBook, JsonLd } from "@/components/ui";
+
+export const metadata = {
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "Mobile Notary Gainesville FL | Same Day | Stratton Collective",
+    template: "%s | Stratton Collective",
+  },
+  description:
+    "Same day mobile and online notary in Gainesville, FL. We come to your home, office or hospital room. 5.0 stars from 104 Google reviews. Call (352) 443-6272.",
+  openGraph: { siteName: SITE.name, type: "website", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
+  alternates: { canonical: "/" },
+};
+
+export const viewport = { themeColor: "#14233c" };
+
+const business = {
+  "@context": "https://schema.org",
+  "@type": "Notary",
+  "@id": `${SITE.url}/#business`,
+  name: SITE.legalName,
+  alternateName: SITE.name,
+  url: SITE.url,
+  telephone: "+1-352-443-6272",
+  email: SITE.email,
+  priceRange: "$75-$275",
+  image: `${SITE.url}/og.png`,
+  address: { "@type": "PostalAddress", addressLocality: SITE.city, addressRegion: SITE.region, postalCode: SITE.postalCode, addressCountry: "US" },
+  geo: { "@type": "GeoCoordinates", latitude: 29.6516, longitude: -82.3248 },
+  openingHours: SITE.hoursSchema,
+  areaServed: [
+    ...TOWNS.map((t) => ({ "@type": "City", name: `${t.name}, FL` })),
+    { "@type": "AdministrativeArea", name: "Alachua County, FL" },
+    { "@type": "State", name: "Florida" },
+  ],
+  makesOffer: [
+    "Mobile notary",
+    "Remote online notarization",
+    "Loan signing agent",
+    "Apostille assistance",
+    "Hospital notary",
+  ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
+  ...(SITE.sameAs.length ? { sameAs: SITE.sameAs } : {}),
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <a className="skip" href="#main">Skip to content</a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
+        <StickyBook />
+        <JsonLd data={business} />
+      </body>
+    </html>
+  );
+}
