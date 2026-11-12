@@ -26,7 +26,7 @@ export default function Home() {
         kicker="Gainesville and all of Alachua County"
         title="The notary comes to you. Today."
         lead="Same day mobile notary at your home, office, hospital room or anywhere in Gainesville. Or sign online by video in minutes. Witnesses and printing included on request."
-        image={IMG.stampOnDoc}
+        image={IMG.twoWomenSigning}
       >
         <ul className="hero-facts">
           <li>Open 7 days, 8am to 8pm</li>
@@ -38,7 +38,7 @@ export default function Home() {
 
       <DocTiles />
 
-      <Split image={IMG.twoWomenSigning} title="Mobile notary: we drive to you" tone="tone-mist">
+      <Split image={IMG.stampOnDoc} title="Mobile notary: we drive to you" tone="tone-mist">
         <p>Homes, offices, coffee shops, hospitals, senior living and jails across Gainesville, Newberry, Alachua, High Springs and every corner of Alachua County. We bring the stamp, a printer and, when you need them, two witnesses.</p>
         <p>Scheduled visits start at $75, and same day service is available most days.</p>
         <div className="cta-row">

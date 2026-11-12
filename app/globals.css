@@ -66,7 +66,7 @@ p { margin: 0 0 1em; }
 .sign-x { font-size: 1.1rem; color: var(--text); line-height: 1; }
 .sign-line a { font-family: var(--serif); font-style: italic; font-size: 1.1rem; text-decoration: none; color: var(--ink); }
 .hero-media { position: relative; }
-.hero-media .photo { width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(26,33,80,.45); }
+.hero-media .photo { width: 100%; aspect-ratio: 4 / 5; max-height: 600px; object-fit: cover; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(26,33,80,.45); }
 .hero-seal-link { position: absolute; left: -48px; bottom: -40px; }
 .hero-seal { color: var(--wax); background: rgba(255,255,255,.92); border-radius: 50%; transform: rotate(-12deg); mix-blend-mode: multiply; }
 @media (max-width: 900px) { .hero-seal-link { left: auto; right: 12px; bottom: -36px; } .hero-seal { width: 118px; height: 118px; } }

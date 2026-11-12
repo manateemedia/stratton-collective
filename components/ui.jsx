@@ -157,7 +157,7 @@ export function Hero({ kicker, title, lead, image, primary = "mobile", children 
           {children}
         </div>
         <div className="hero-media">
-          <Photo image={image} ratio={1.05} priority sizes="(max-width: 900px) 100vw, 46vw" />
+          <Photo image={image} ratio={1.25} priority sizes="(max-width: 900px) 100vw, 46vw" />
           <a href={SITE.googleReviews} className="hero-seal-link" aria-label={`Rated ${SITE.rating} from ${SITE.reviewCount} Google reviews`}>
             <Seal size={150} className="hero-seal" />
           </a>
