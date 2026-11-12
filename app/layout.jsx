@@ -2,6 +2,7 @@ import "./globals.css";
 import { SITE } from "@/lib/site";
 import { TOWNS } from "@/lib/towns";
 import { Header, Footer, StickyBook, JsonLd } from "@/components/ui";
+import BackToTop from "@/components/BackToTop";
 
 export const metadata = {
   metadataBase: new URL(SITE.url),
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
         <main id="main">{children}</main>
         <Footer />
         <StickyBook />
+        <BackToTop />
         <JsonLd data={business} />
       </body>
     </html>
