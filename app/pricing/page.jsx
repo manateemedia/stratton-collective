@@ -15,7 +15,7 @@ export default function Page() {
       <Pricing title="Mobile notary fees" />
       <Faq items={[
         ["Why does a mobile notary cost more than a bank?", "Florida caps the notary fee at $10 per notarial act. Mobile service covers driving to you, your schedule, printing, witnesses and evening or weekend availability."],
-        ["How much is online notarization?", "$25 for a 30 minute online session by video. It is the most affordable option when you do not need us in person."],
+        ["How much is online notarization?", "Online pricing shows when you book. It is often the most affordable option when you do not need us in person."],
         ["Do you charge per signature?", "The appointment covers the visit. Very large packages or many signers may cost more, and we will tell you before you book."],
         ["What payment do you take?", "Card at booking. Ask us about invoicing for title companies and businesses."],
       ]} />
