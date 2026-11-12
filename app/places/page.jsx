@@ -3,8 +3,8 @@ import { HOSPITALS, JAILS } from "@/lib/places";
 import { IMG } from "@/lib/images";
 
 export const metadata = {
-  title: "Places We Go | Hospital, Jail and Nursing Home Notary Gainesville",
-  description: "Mobile notary at Gainesville hospitals, jails, prisons, nursing homes, assisted living and hospice. We handle check-in, witnesses and facility rules.",
+  title: "Where We Meet You | Home, Office, Hospital and Jail Notary Gainesville",
+  description: "A mobile notary meets you at your home, office, a coffee shop or parking lot, or at Gainesville hospitals, jails, nursing homes and hospice. Witnesses available.",
   alternates: { canonical: "/places" },
 };
 
