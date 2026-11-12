@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Hero, Split, DocTiles, PlaceTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
+import { HomeHero, Split, DocTiles, PlaceTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
 import { IMG } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -22,19 +22,7 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      <Hero
-        kicker="Gainesville and all of Alachua County"
-        title="The notary comes to you. Today."
-        lead="Same day mobile notary at your home, office, hospital room or anywhere in Gainesville. Or sign online by video in minutes. Witnesses and printing included on request."
-        image={IMG.twoWomenSigning}
-      >
-        <ul className="hero-facts">
-          <li>Open 7 days, 8am to 8pm</li>
-          <li>Emergency visits within the hour</li>
-          <li>Witnesses brought to you</li>
-          <li>Florida commissioned and RON certified</li>
-        </ul>
-      </Hero>
+      <HomeHero />
 
       <DocTiles />
       <PlaceTiles />

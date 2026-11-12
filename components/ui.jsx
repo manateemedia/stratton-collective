@@ -4,6 +4,7 @@ import { TOWNS } from "@/lib/towns";
 import { SERVICES } from "@/lib/services";
 import { PLACE_HUBS, HOSPITALS, JAILS } from "@/lib/places";
 import { IMG, img, srcSet } from "@/lib/images";
+import OpenNow from "@/components/OpenNow";
 
 export function JsonLd({ data }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
@@ -148,6 +149,70 @@ export function BookButtons({ primary = "mobile", light = false }) {
   return <div className="cta-row">{primary === "online" ? [online, mobile] : [mobile, online]}</div>;
 }
 
+const ICONS = {
+  phone: "M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z",
+  clock: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4V6h-2v7.4l5.2 3.1 1-1.7z",
+  bolt: "M13 2 4 14h7l-1 8 9-12h-7z",
+  people: "M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4zm8 0c-.3 0-.7 0-1.1.1 1.3.9 2.1 2.2 2.1 3.9v3h7v-3c0-2.7-5.3-4-8-4z",
+  shield: "M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5zm-1.2 14.2-3.5-3.5 1.4-1.4 2.1 2.1 4.6-4.6 1.4 1.4z",
+};
+export function Icon({ name, size = 18 }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d={ICONS[name]} /></svg>;
+}
+export function PhoneIcon() { return <Icon name="phone" size={18} />; }
+
+export function Facts({ light = false }) {
+  const items = [["clock", "Open 7 days, 8am to 8pm"], ["bolt", "Emergency visits within the hour"], ["people", "Witnesses brought to you"], ["shield", "Florida commissioned and RON certified"]];
+  return (
+    <ul className={`facts ${light ? "facts-light" : ""}`}>
+      {items.map(([i, t]) => <li key={t}><Icon name={i} size={17} />{t}</li>)}
+    </ul>
+  );
+}
+
+const NEEDS = [
+  ["Power of attorney", "/power-of-attorney-in-florida"],
+  ["Someone is in the hospital", "/hospital-notary-gainesville"],
+  ["Nursing home or hospice", "/nursing-home-notary-gainesville"],
+  ["Home sale or deed", "/real-estate"],
+  ["Will or trust", "/will-and-estate-notary"],
+  ["Apostille for overseas", "/apostille"],
+  ["Jail or prison visit", "/jail-notary-gainesville"],
+  ["Sign online by video", "/online-notary"],
+];
+
+// Home hero: full-bleed photo, live status, big call button and a "what do you need" picker.
+export function HomeHero() {
+  return (
+    <section className="home-hero">
+      <div className="home-hero-bg"><Photo image={IMG.twoWomenSigning} ratio={0.5} priority sizes="100vw" /></div>
+      <div className="wrap home-hero-in">
+        <div className="home-hero-copy">
+          <OpenNow />
+          <h1>Need something notarized today? We'll come to you.</h1>
+          <p className="lead">Gainesville's 5-star mobile notary. Home, office, hospital bed or jail, anywhere in Alachua County, often within a few hours. Or sign online by video in minutes.</p>
+          <div className="cta-row">
+            <a className="btn btn-call" href={SITE.phoneHref}><PhoneIcon /> Call or text {SITE.phone}</a>
+            <a className="btn btn-paper" href={SITE.bookMobile}>Book online</a>
+          </div>
+          <a className="hero-rating" href={SITE.googleReviews}>
+            <span className="stars" aria-hidden>★★★★★</span>
+            <span><strong>{SITE.rating}</strong> from {SITE.reviewCount} Google reviews</span>
+          </a>
+        </div>
+        <div className="needs-card">
+          <p className="needs-title">What do you need notarized?</p>
+          <div className="needs">
+            {NEEDS.map(([t, href]) => <Link key={href} href={href} className="need">{t}</Link>)}
+          </div>
+          <p className="needs-foot">Not sure? Call or text and tell us what you have. We'll tell you what Florida requires.</p>
+        </div>
+      </div>
+      <div className="facts-bar"><div className="wrap"><Facts /></div></div>
+    </section>
+  );
+}
+
 // Page hero: text on paper, a large photo, and the seal pressed onto the photo's corner.
 export function Hero({ kicker, title, lead, image, primary = "mobile", children }) {
   return (
@@ -158,10 +223,7 @@ export function Hero({ kicker, title, lead, image, primary = "mobile", children 
           <h1>{title}</h1>
           {lead && <p className="lead">{lead}</p>}
           <BookButtons primary={primary} />
-          <div className="sign-line">
-            <span className="sign-x" aria-hidden>✕</span>
-            <a href={`${SITE.phoneHref}`}>Or call or text {SITE.phone}</a>
-          </div>
+          <a className="call-link" href={SITE.phoneHref}><PhoneIcon /> Call or text {SITE.phone}</a>
           {children}
         </div>
         <div className="hero-media">
