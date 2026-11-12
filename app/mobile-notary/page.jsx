@@ -1,4 +1,4 @@
-import { Hero, Split, Pricing, DocTiles, Reviews, Steps, Faq, CtaBand, AreaLinks, Breadcrumbs } from "@/components/ui";
+import { Hero, Split, Pricing, DocTiles, PlaceTiles, Reviews, Steps, Faq, CtaBand, AreaLinks, Breadcrumbs } from "@/components/ui";
 import { IMG } from "@/lib/images";
 
 export const metadata = {
@@ -40,6 +40,7 @@ export default function Page() {
       </Split>
       <Pricing />
       <DocTiles />
+      <PlaceTiles />
       <Reviews />
       <AreaLinks />
       <Faq items={faqs} />

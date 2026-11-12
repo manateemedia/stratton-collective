@@ -1,4 +1,4 @@
-import { Hero, DocTiles, CtaBand, Breadcrumbs, Faq } from "@/components/ui";
+import { Hero, DocTiles, PlaceTiles, CtaBand, Breadcrumbs, Faq } from "@/components/ui";
 import { IMG } from "@/lib/images";
 
 export const metadata = {
@@ -13,6 +13,7 @@ export default function Page() {
       <Breadcrumbs items={[{ name: "Documents", path: "/services" }]} />
       <Hero kicker="Notary services" title="Every document, done right the first time" lead="From a single affidavit to a full closing package, we know what Florida requires for each document and bring the witnesses when you need them." image={IMG.sealedSignatures} />
       <DocTiles title="Choose your document" />
+      <PlaceTiles />
       <Faq items={[
         ["Do you notarize documents in other languages?", "Yes, as long as the notarial certificate is in English and we can communicate with the signer. We cannot translate the document."],
         ["Can you notarize a document without a notarial certificate?", "Yes. You choose an acknowledgment or a jurat and we attach a Florida certificate."],

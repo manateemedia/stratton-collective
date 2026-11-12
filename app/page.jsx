@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Hero, Split, DocTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
+import { Hero, Split, DocTiles, PlaceTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
 import { IMG } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -37,6 +37,7 @@ export default function Home() {
       </Hero>
 
       <DocTiles />
+      <PlaceTiles />
 
       <Split image={IMG.stampOnDoc} title="Mobile notary: we drive to you" tone="tone-mist">
         <p>Homes, offices, coffee shops, hospitals, senior living and jails across Gainesville, Newberry, Alachua, High Springs and every corner of Alachua County. We bring the stamp, a printer and, when you need them, two witnesses.</p>
@@ -62,7 +63,7 @@ export default function Home() {
         <p>When someone you love is at UF Health Shands, North Florida Regional or the VA, we come to the bedside, often within the hour. Powers of attorney, healthcare surrogates, living wills and HIPAA forms, handled calmly and kindly.</p>
         <div className="cta-row">
           <Link className="btn btn-ink" href="/uf-shands-hospital-notary">UF Shands notary</Link>
-          <Link className="btn btn-line" href="/hospital-notary-gainesville">Other hospitals and care homes</Link>
+          <Link className="btn btn-line" href="/hospital-notary-gainesville">All hospitals we visit</Link>
         </div>
       </Split>
 

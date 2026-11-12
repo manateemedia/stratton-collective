@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Hero, Split, Pricing, Reviews, Faq, CtaBand, Breadcrumbs, AreaLinks, JsonLd, Bring, DocTiles } from "@/components/ui";
+import { Hero, Split, Pricing, Reviews, Faq, CtaBand, Breadcrumbs, AreaLinks, JsonLd, Bring, DocTiles, FacilityList, PlaceTiles } from "@/components/ui";
+import { HOSPITALS, JAILS, placeBySlug, isHospital } from "@/lib/places";
 import { TOWNS, townBySlug } from "@/lib/towns";
 import { SERVICES, serviceBySlug } from "@/lib/services";
 import { IMG } from "@/lib/images";
@@ -21,13 +22,22 @@ const TOWN_IMAGES = {
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return [...TOWNS.map((t) => ({ slug: t.slug })), ...SERVICES.map((s) => ({ slug: s.slug }))];
+  return [...TOWNS, ...SERVICES, ...HOSPITALS, ...JAILS].map((x) => ({ slug: x.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const s = serviceBySlug(slug);
   if (s) return { title: { absolute: `${s.title} | Stratton Collective` }, description: s.description, alternates: { canonical: `/${s.slug}` } };
+  const pl = placeBySlug(slug);
+  if (pl) {
+    const hosp = isHospital(pl);
+    return {
+      title: { absolute: hosp ? `Notary at ${pl.short} | Bedside Notary, Same Day | Stratton Collective` : `${pl.short} Notary | Notary Visits for Inmates | Stratton Collective` },
+      description: `${pl.intro} ${pl.address}. Call ${SITE.phone}.`.slice(0, 300),
+      alternates: { canonical: `/${pl.slug}` },
+    };
+  }
   const t = townBySlug(slug);
   if (t)
     return {
@@ -42,6 +52,8 @@ export default async function Page({ params }) {
   const { slug } = await params;
   const s = serviceBySlug(slug);
   if (s) return <ServicePage s={s} />;
+  const pl = placeBySlug(slug);
+  if (pl) return <PlacePage p={pl} />;
   const t = townBySlug(slug);
   if (t) return <TownPage t={t} />;
   notFound();
@@ -102,6 +114,54 @@ function TownPage({ t }) {
       <Faq items={faqs} />
       <AreaLinks current={t.slug} />
       <CtaBand title={`Need a notary in ${t.name}?`} />
+    </>
+  );
+}
+
+function PlacePage({ p }) {
+  const hosp = isHospital(p);
+  const hub = hosp ? { name: "Hospitals", path: "/hospital-notary-gainesville" } : { name: "Jails and prisons", path: "/jail-notary-gainesville" };
+  const others = (hosp ? HOSPITALS : JAILS).filter((x) => x.slug !== p.slug);
+  const faqs = hosp
+    ? [
+        [`How fast can a notary get to ${p.short}?`, p.city === "Gainesville" ? "Often within the hour for emergencies and the same day for most requests. Call or text for the quickest answer." : "Visits outside Gainesville are scheduled ahead. Call and we will tell you the soonest time."],
+        ["Do you bring witnesses?", "Yes. Powers of attorney, wills and many healthcare documents need two witnesses. We bring them for $30 each."],
+        ["What if the patient is not alert?", "We can only notarize when the signer understands what they are signing. We will come back when they are more alert."],
+        ["What does the patient need?", "A government photo ID (ask the nurse if it is in hospital property) and the unsigned document. Email it to us and we print it."],
+      ]
+    : [
+        [`How do I set up a notary visit at ${p.short}?`, "Call or text with the inmate's full name, booking or inmate number and the document. We confirm the facility's rules and the soonest time."],
+        ["Can the inmate's ID be used?", "The facility decides how property IDs are handled. We plan identification with staff before the visit."],
+        ["Who gets the signed document?", "Tell us who should receive the original. We can hand it to family, an attorney or mail it."],
+      ];
+  return (
+    <>
+      <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, hub, { name: p.short, path: `/${p.slug}` }]} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", serviceType: hosp ? "Hospital notary" : "Jail notary", name: `Notary at ${p.name}`, provider: { "@id": `${SITE.url}/#business` }, areaServed: { "@type": "Place", name: p.name, address: p.address } }} />
+      <Hero kicker={p.address} title={hosp ? `Notary at ${p.name}` : `Notary visits at ${p.name}`} lead={p.intro} image={p.image} />
+      <Split image={hosp ? IMG.holdingHands : IMG.manSigning} title={`How a notary visit works at ${p.short}`}>
+        <ul>{p.notes.map((n) => <li key={n}>{n}</li>)}</ul>
+        <Bring items={hosp ? ["Patient's government photo ID", "Unsigned documents, or email them and we print", "Room number, unit and any visitor rules", "Two witnesses if needed, or ask us to bring them"] : ["Inmate's full name and booking or inmate number", "The unsigned documents", "Who will receive the signed original"]} />
+      </Split>
+      {p.facilities && (
+        <section className="band tone-mist">
+          <div className="wrap">
+            <h2>Prisons near Gainesville</h2>
+            <FacilityList items={p.facilities} />
+          </div>
+        </section>
+      )}
+      {hosp && <Pricing title="Hospital notary pricing" tone="tone-mist" />}
+      <Reviews count={3} />
+      <Faq items={faqs} />
+      <section className="band">
+        <div className="wrap">
+          <h2>{hosp ? "Other hospitals we visit" : "Other jails and prisons"}</h2>
+          <FacilityList items={others} />
+          <p className="disclaimer">We are an independent mobile notary and are not affiliated with {p.name}.</p>
+        </div>
+      </section>
+      <CtaBand title={hosp ? `Need a notary at ${p.short}?` : "Need a jail notary?"} />
     </>
   );
 }

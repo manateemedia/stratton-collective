@@ -186,3 +186,13 @@ p { margin: 0 0 1em; }
 /* sticky mobile booking */
 .sticky-book { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--line); }
 @media (min-width: 900px) { .sticky-book { display: none; } }
+
+.tiles-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 700px) { .tiles-3 { grid-template-columns: 1fr; } }
+.facility-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 32px; }
+.facility-list li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; }
+.facility-list a { text-decoration: none; color: var(--ink-deep); }
+.facility-list a:hover strong { text-decoration: underline; }
+.facility-list span { color: var(--muted); font-size: .93rem; }
+.footer-gap { margin-bottom: 22px !important; }
+.disclaimer { font-size: .85rem; color: var(--muted); margin-top: 18px; }

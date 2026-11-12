@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SITE, PRICING, ADDONS, REVIEWS } from "@/lib/site";
 import { TOWNS } from "@/lib/towns";
 import { SERVICES } from "@/lib/services";
+import { PLACE_HUBS, HOSPITALS, JAILS } from "@/lib/places";
 import { IMG, img, srcSet } from "@/lib/images";
 
 export function JsonLd({ data }) {
@@ -61,6 +62,7 @@ export function Header() {
           <Link href="/mobile-notary">Mobile</Link>
           <Link href="/online-notary">Online</Link>
           <Link href="/services">Documents</Link>
+          <Link href="/places">Places we go</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/service-areas">Areas</Link>
           <Link href="/reviews">Reviews</Link>
@@ -98,6 +100,12 @@ export function Footer() {
           </ul>
         </div>
         <div>
+          <p className="footer-h">Places we go</p>
+          <ul className="footer-gap">
+            {PLACE_HUBS.map((h) => (
+              <li key={h.slug}><Link href={`/${h.slug}`}>{h.title}</Link></li>
+            ))}
+          </ul>
           <p className="footer-h">Service areas</p>
           <ul>
             {TOWNS.map((t) => (
@@ -202,6 +210,38 @@ export function DocTiles({ title = "What are you signing?", limit }) {
         </div>
       </div>
     </section>
+  );
+}
+
+export function PlaceTiles({ title = "Places we go", lead = "Hospitals, jails and care homes have their own rules. We know them, and we come to the bedside or the visiting room." }) {
+  return (
+    <section className="band tone-mist">
+      <div className="wrap">
+        <h2>{title}</h2>
+        <p className="muted section-lead">{lead}</p>
+        <div className="tiles tiles-3">
+          {PLACE_HUBS.map((h) => (
+            <Link key={h.slug} href={`/${h.slug}`} className="tile">
+              <Photo image={h.image} ratio={0.7} sizes="(max-width: 700px) 100vw, 33vw" />
+              <span className="tile-label">{h.title}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function FacilityList({ items, linkBase = true }) {
+  return (
+    <ul className="facility-list">
+      {items.map((f) => (
+        <li key={f.slug || f[0]}>
+          {f.slug ? <Link href={`/${f.slug}`}><strong>{f.name}</strong></Link> : <strong>{f[0]}</strong>}
+          <span>{f.address || f[1]}</span>
+        </li>
+      ))}
+    </ul>
   );
 }
 
