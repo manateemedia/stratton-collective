@@ -70,6 +70,7 @@ function ServicePage({ s }) {
       <Breadcrumbs items={[{ name: "Documents", path: "/services" }, { name: s.short, path: `/${s.slug}` }]} />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", serviceType: s.short, name: s.h1, description: s.description, provider: { "@id": `${SITE.url}/#business` }, areaServed: { "@type": "City", name: "Gainesville, FL" } }} />
       <Hero kicker={s.short} title={s.h1} lead={s.lead} image={s.hero} />
+      <Reviews count={3} />
       <Split image={s.side} title={first[0]}>
         <p>{first[1]}</p>
         <Bring items={s.bring} />
@@ -85,7 +86,6 @@ function ServicePage({ s }) {
         </div>
       </section>
       <Pricing />
-      <Reviews count={3} />
       <Faq items={s.faqs} />
       <DocTiles title="Other documents we notarize" limit={8} />
       <CtaBand />
@@ -106,6 +106,7 @@ function TownPage({ t }) {
       <Breadcrumbs items={[{ name: "Service Areas", path: "/service-areas" }, { name: `${t.name}, FL`, path: `/${t.slug}` }]} />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", serviceType: "Mobile notary", name: `Mobile notary in ${t.name}, FL`, provider: { "@id": `${SITE.url}/#business` }, areaServed: { "@type": "City", name: `${t.name}, FL` } }} />
       <Hero kicker={`${t.name}, ${t.county}`} title={`Mobile notary in ${t.name}, Florida`} lead={t.intro} image={hero} />
+      <Reviews count={3} />
       <Split image={side} title={`How we help people in ${t.name}`}>
         {t.focus.map(([h, d]) => (
           <p key={h}><strong>{h}.</strong> {d}</p>
@@ -114,7 +115,6 @@ function TownPage({ t }) {
       </Split>
       <DocTiles title={`Documents we notarize in ${t.name}`} />
       <Pricing tone="tone-mist" />
-      <Reviews count={3} />
       <Faq items={faqs} />
       <AreaLinks current={t.slug} />
       <CtaBand title={`Need a notary in ${t.name}?`} />
@@ -146,6 +146,7 @@ function PlacePage({ p }) {
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", serviceType: hosp ? "Hospital notary" : "Jail notary", name: `Notary at ${p.name}`, provider: { "@id": `${SITE.url}/#business` }, areaServed: { "@type": "Place", name: p.name, address: p.address } }} />
       {hosp && <JsonLd data={{ "@context": "https://schema.org", "@type": "Hospital", name: p.name, address: p.address }} />}
       <Hero kicker={p.address} title={hosp ? `Notary at ${p.name}` : `Notary visits at ${p.name}`} lead={p.intro} image={p.image} />
+      <Reviews count={3} />
       {hosp && (
         <section className="band">
           <div className="wrap narrow prose">
@@ -186,7 +187,6 @@ function PlacePage({ p }) {
           </div>
         </section>
       )}
-      <Reviews count={3} />
       <Faq items={faqs} />
       <section className="band">
         <div className="wrap">
@@ -210,13 +210,13 @@ function EverydayPage({ e }) {
     <>
       <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, { name: e.short, path: `/${e.slug}` }]} />
       <Hero kicker="Mobile notary" title={e.h1} lead={e.lead} image={e.image} />
+      <Reviews count={3} />
       <Split image={e.side} title="Great for">
         <ul>{e.good.map((g) => <li key={g}>{g}</li>)}</ul>
         <Bring items={e.tips} />
       </Split>
       <Pricing tone="tone-mist" />
       <DocTiles title="What we can notarize there" limit={8} />
-      <Reviews count={3} />
       <Faq items={faqs} />
       <PlaceTiles title="Other places we meet" />
       <CtaBand />

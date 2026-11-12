@@ -20,6 +20,7 @@ export default function Page() {
     <>
       <Breadcrumbs items={[{ name: "Mobile Notary", path: "/mobile-notary" }]} />
       <Hero kicker="Mobile notary" title="A Gainesville notary who comes to you" lead="Same day appointments most days, emergency service within the hour, evenings and weekends. We bring the stamp, the printer and the witnesses." image={IMG.manSigning} />
+      <Reviews />
       <section className="band">
         <div className="wrap">
           <h2>How a mobile appointment works</h2>
@@ -41,7 +42,6 @@ export default function Page() {
       <Pricing />
       <DocTiles />
       <PlaceTiles />
-      <Reviews />
       <AreaLinks />
       <Faq items={faqs} />
       <CtaBand />

@@ -23,6 +23,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      <Reviews />
       <ThatEasy />
       <PlaceTiles />
 
@@ -44,7 +45,6 @@ export default function Home() {
         </div>
       </Split>
 
-      <Reviews />
 
       <Split image={IMG.hospitalRoom} title="Hospital and bedside notary" tone="tone-mist">
         <p>When someone you love is at UF Health Shands, North Florida Regional or the VA, we come to the bedside, often within the hour. Powers of attorney, healthcare surrogates, living wills and HIPAA forms, handled calmly and kindly.</p>

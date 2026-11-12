@@ -21,6 +21,7 @@ export default function Page() {
     <>
       <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, { name: "Hospitals", path: "/hospital-notary-gainesville" }]} />
       <Hero kicker="Hospital notary" title="Bedside notary at Gainesville hospitals" lead="When someone you love cannot leave their bed, we come to them. Same day, often within the hour, with witnesses when you need them." image={IMG.hospitalBed} />
+      <Reviews count={3} />
       <section className="band">
         <div className="wrap">
           <h2>Hospitals we visit</h2>
@@ -40,7 +41,6 @@ export default function Page() {
         </ul>
       </Split>
       <Pricing title="Hospital notary pricing" />
-      <Reviews count={3} />
       <Faq items={faqs} />
       <PlaceTiles title="Other places we go" />
       <CtaBand title="Need a notary at the hospital now?" sub="Call or text for the fastest answer. We will tell you exactly when we can be there." />

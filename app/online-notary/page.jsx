@@ -23,6 +23,7 @@ export default function Page() {
     <>
       <Breadcrumbs items={[{ name: "Online Notary", path: "/online-notary" }]} />
       <Hero primary="online" kicker="Remote online notarization" title="Get notarized online in minutes" lead="A live video session with a Florida commissioned online notary. Sign from home, work or anywhere in the world." image={IMG.videoCall} />
+      <Reviews />
       <section className="band">
         <div className="wrap">
           <h2>The online notary process</h2>
@@ -43,7 +44,6 @@ export default function Page() {
         </ul>
         <a className="btn btn-ink" href={SITE.bookOnline}>Book online notary</a>
       </Split>
-      <Reviews />
       <Faq items={faqs} />
       <CtaBand title="Ready to sign online?" />
     </>

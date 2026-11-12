@@ -20,6 +20,7 @@ export default function Page() {
     <>
       <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, { name: "Nursing homes and assisted living", path: "/nursing-home-notary-gainesville" }]} />
       <Hero kicker="Nursing home notary" title="Notary at nursing homes and assisted living in Gainesville" lead="We come to the resident's room, patiently and on their schedule. Witnesses included on request." image={IMG.seniorCouple} />
+      <Reviews count={3} />
       <section className="band">
         <div className="wrap">
           <h2>Care communities we visit</h2>
@@ -43,7 +44,6 @@ export default function Page() {
         </ul>
       </Split>
       <Pricing />
-      <Reviews count={3} />
       <Faq items={faqs} />
       <PlaceTiles title="Other places we go" />
       <CtaBand />

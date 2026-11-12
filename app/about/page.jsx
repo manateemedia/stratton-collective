@@ -12,6 +12,7 @@ export default function Page() {
     <>
       <Breadcrumbs items={[{ name: "About", path: "/about" }]} />
       <Hero kicker="About us" title="A local notary Gainesville trusts" lead="Stratton Collective was started by Nicolette Stratton to make notarization easy for Gainesville families, UF employees, hospital patients and real estate professionals." image={IMG.writingClose} />
+      <Reviews count={3} />
       <Split image={IMG.brassSeal} title="Credentials">
         <ul>
           <li>Commissioned Florida notary public</li>
@@ -23,7 +24,6 @@ export default function Page() {
       <Split image={IMG.centuryTower} title="Rooted in Gainesville" flip tone="tone-mist">
         <p>We know the hospitals, the title companies, the UF HR offices and the back roads to Archer and Hawthorne. That local knowledge is why we can usually be there the same day.</p>
       </Split>
-      <Reviews count={3} />
       <CtaBand />
     </>
   );
