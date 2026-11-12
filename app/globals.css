@@ -365,3 +365,26 @@ html, body { overflow-x: clip; max-width: 100%; }
   .need-row { padding: 12px 0; font-size: 1rem; }
   .need-row img { width: 48px; height: 48px; }
 }
+
+/* guides */
+.guide-cat + .guide-cat { padding-top: 0; }
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; margin-top: 20px; }
+.guide-card { text-decoration: none; color: inherit; display: block; }
+.guide-card .photo { aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
+.guide-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+.guide-card:hover h3 { text-decoration: underline; }
+.guide-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+@media (max-width: 900px) { .guide-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+.guide-body h2 { margin-top: 1.4em; }
+.guide-body section:first-of-type h2 { margin-top: .4em; }
+.byline { color: var(--muted); font-size: .9rem; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+.guide-aside { position: sticky; top: 96px; display: grid; gap: 20px; }
+@media (max-width: 900px) { .guide-aside { position: static; } }
+.aside-box { border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; gap: 10px; }
+.aside-h { font-family: var(--serif); font-size: 1.2rem; color: var(--ink-deep); margin: 0; }
+.aside-box .btn { width: 100%; }
+.aside-links { list-style: none; padding: 0; margin: 0; }
+.aside-links li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.aside-links a { font-weight: 600; text-decoration: none; }
+.aside-links a:hover { text-decoration: underline; }
+.more-guides { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); column-gap: 28px; margin-bottom: 16px; }

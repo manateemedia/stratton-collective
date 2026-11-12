@@ -2,6 +2,7 @@ import { SITE, PRICING, ADDONS } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
 import { TOWNS } from "@/lib/towns";
 import { HOSPITALS, JAILS, EVERYDAY } from "@/lib/places";
+import { GUIDES } from "@/lib/guides";
 
 export const dynamic = "force-static";
 
@@ -42,6 +43,9 @@ export function GET() {
     `- [Jails and prisons](${u("/jail-notary-gainesville")}): $175 per visit`,
     ...JAILS.map((j) => `  - [${j.name}](${u("/" + j.slug)}), ${j.address}`),
     `- [Nursing homes, assisted living and hospice](${u("/nursing-home-notary-gainesville")})`,
+    "",
+    "## Guides (Florida notary rules explained)",
+    ...GUIDES.map((g) => `- [${g.title}](${u("/guides/" + g.slug)}): ${g.description}`),
     "",
     "## Towns served",
     ...TOWNS.map((t) => `- [Mobile notary in ${t.name}, FL](${u("/" + t.slug)})`),

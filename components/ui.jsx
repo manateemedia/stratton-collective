@@ -65,7 +65,7 @@ export function Header() {
           <Link href="/places">Places</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/service-areas">Areas</Link>
-          <Link href="/reviews">Reviews</Link>
+          <Link href="/guides">Guides</Link>
         </nav>
         <a className="nav-phone" href={SITE.phoneHref}>{SITE.phone}</a>
         <a className="btn btn-ink nav-cta" href={SITE.bookMobile}>Book a notary</a>
@@ -119,6 +119,7 @@ export function Footer() {
             <li><Link href="/about">About us</Link></li>
             <li><Link href="/pricing">Pricing</Link></li>
             <li><Link href="/reviews">Reviews</Link></li>
+            <li><Link href="/guides">Notary guides</Link></li>
             <li><Link href="/faq">Questions</Link></li>
             <li><Link href="/what-is-a-notary-how-does-an-online-notary-work">How notarization works</Link></li>
             <li><Link href="/contact">Contact</Link></li>
