@@ -321,3 +321,28 @@ html, body { overflow-x: clip; max-width: 100%; }
   .facts-light li { font-size: .8rem; padding: 5px 10px; }
 }
 @media (max-width: 700px) { .facts-light { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .facts-light li { white-space: normal !important; justify-content: flex-start; line-height: 1.25; } }
+
+/* ---------- home hero: phone layout ---------- */
+.hh-photo { display: none; }
+.needs-sub { color: var(--muted); font-size: .92rem; margin: -8px 0 14px; }
+@media (max-width: 700px) {
+  .home-hero { color: var(--text); background: #fff; }
+  .home-hero-bg { display: none; }
+  .hh-photo { display: block; position: relative; }
+  .hh-photo .photo { aspect-ratio: 16 / 11; object-fit: cover; object-position: 60% 40%; }
+  .hh-photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(255,255,255,.95)); }
+  .hh-seal { position: absolute; right: 14px; bottom: -30px; z-index: 2; color: var(--wax); background: #fff; border-radius: 50%; transform: rotate(-12deg); box-shadow: 0 8px 20px -8px rgba(0,0,0,.35); }
+  .home-hero-in { padding-top: 8px; padding-bottom: 28px; gap: 22px; }
+  .home-hero h1 { color: var(--ink-deep); font-size: 2.15rem; line-height: 1.08; margin: 0 110px 12px 0; }
+  .home-hero .lead { color: #3b4055; font-size: 1.05rem; margin-bottom: 20px; }
+  .home-hero .btn-paper { background: #fff; border-color: var(--ink); color: var(--ink); }
+  .hero-rating { color: var(--text); margin-top: 16px; }
+  .facts-light li { background: var(--mist); border-color: var(--line); color: var(--ink-deep); }
+  .facts-light svg { color: var(--brass); }
+  .needs-card { box-shadow: none; padding: 0; background: transparent; }
+  .needs-title { margin-bottom: 4px; }
+  .needs-sub { margin: 0 0 12px; }
+  .needs { display: flex; grid-template-columns: none; overflow-x: auto; gap: 8px; margin: 0 -18px; padding: 2px 18px 8px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .need { flex: none; scroll-snap-align: start; min-height: 44px; border-radius: 999px; padding: 8px 16px; background: var(--ink); color: #fff; border-color: var(--ink); white-space: nowrap; }
+  .need:nth-child(odd) { background: #fff; color: var(--ink-deep); border-color: var(--ink); }
+}

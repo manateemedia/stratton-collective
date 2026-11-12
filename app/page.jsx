@@ -23,9 +23,8 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <ThatEasy />
-
       <DocTiles />
+      <ThatEasy />
       <PlaceTiles />
 
       <Split image={IMG.stampOnDoc} title="Mobile notary: we drive to you" tone="tone-mist">

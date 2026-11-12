@@ -187,10 +187,14 @@ export function HomeHero() {
   return (
     <section className="home-hero">
       <div className="home-hero-bg"><Photo image={IMG.twoWomenSigning} ratio={0.5} priority sizes="100vw" /></div>
+      <div className="hh-photo">
+        <Photo image={IMG.twoWomenSigning} ratio={0.62} priority sizes="100vw" />
+        <a href={SITE.googleReviews} className="hh-seal" aria-label={`Rated ${SITE.rating} from ${SITE.reviewCount} Google reviews`}><Seal size={104} /></a>
+      </div>
       <div className="wrap home-hero-in">
         <div className="home-hero-copy">
-          <h1>Need something notarized today? We'll come to you.</h1>
-          <p className="lead">Tell us the time, the place and what you're signing. One of our notaries will be there. Home, office, hospital bed or jail, anywhere in Alachua County. Or pick a time to sign online and we'll be ready.</p>
+          <h1>Need a notary today? We come to you.</h1>
+          <p className="lead">Home, office, hospital bed or jail, anywhere in Alachua County. Or sign online in minutes.</p>
           <div className="cta-row">
             <a className="btn btn-call" href={SITE.phoneHref}><PhoneIcon /> Call or text {SITE.phone}</a>
             <a className="btn btn-paper" href={SITE.bookMobile}>Book online</a>
@@ -203,10 +207,10 @@ export function HomeHero() {
         </div>
         <div className="needs-card">
           <p className="needs-title">What do you need notarized?</p>
+          <p className="needs-sub">Tell us when, where and what. One of our notaries will be there.</p>
           <div className="needs">
             {NEEDS.map(([t, href]) => <Link key={href} href={href} className="need">{t}</Link>)}
           </div>
-          <p className="needs-foot">Not sure? Call or text and tell us what you have. We'll tell you what Florida requires.</p>
         </div>
       </div>
     </section>

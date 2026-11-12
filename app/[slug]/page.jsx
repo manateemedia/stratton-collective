@@ -35,8 +35,8 @@ export async function generateMetadata({ params }) {
   if (pl) {
     const hosp = isHospital(pl);
     return {
-      title: { absolute: hosp ? `Notary at ${pl.short} | Bedside Notary, Same Day | Stratton Collective` : `${pl.short} Notary | $175 Inmate Notary Visits | Stratton Collective` },
-      description: `${pl.intro} ${pl.address}. Call ${SITE.phone}.`.slice(0, 300),
+      title: { absolute: hosp ? `${pl.seoTitle} | Stratton Collective` : `${pl.short} Notary | $175 Inmate Notary Visits | Stratton Collective` },
+      description: hosp ? `Need a notary at ${pl.name}? We come to the patient's bedside at ${pl.address}, often the same day. Powers of attorney, healthcare surrogates, wills. Witnesses provided. Call ${SITE.phone}.` : `${pl.intro} ${pl.address}. Call ${SITE.phone}.`.slice(0, 300),
       alternates: { canonical: `/${pl.slug}` },
     };
   }
@@ -128,6 +128,7 @@ function PlacePage({ p }) {
   const others = (hosp ? HOSPITALS : JAILS).filter((x) => x.slug !== p.slug);
   const faqs = hosp
     ? [
+        [`Is there a notary inside ${p.name}?`, `Some hospitals have staff notaries, but their hours are limited and many are not allowed to notarize personal documents like powers of attorney or wills for patients. A mobile notary comes to the bedside at ${p.name} on your schedule, including evenings and weekends.`],
         [`How fast can a notary get to ${p.short}?`, p.city === "Gainesville" ? "Often within the hour for emergencies and the same day for most requests. Call or text for the quickest answer." : "Visits outside Gainesville are scheduled ahead. Call and we will tell you the soonest time."],
         ["Do you bring witnesses?", "Yes. Powers of attorney, wills and many healthcare documents need two witnesses. We bring them for $30 each."],
         ["What if the patient is not alert?", "We can only notarize when the signer understands what they are signing. We will come back when they are more alert."],
@@ -143,7 +144,26 @@ function PlacePage({ p }) {
     <>
       <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, hub, { name: p.short, path: `/${p.slug}` }]} />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", serviceType: hosp ? "Hospital notary" : "Jail notary", name: `Notary at ${p.name}`, provider: { "@id": `${SITE.url}/#business` }, areaServed: { "@type": "Place", name: p.name, address: p.address } }} />
+      {hosp && <JsonLd data={{ "@context": "https://schema.org", "@type": "Hospital", name: p.name, address: p.address }} />}
       <Hero kicker={p.address} title={hosp ? `Notary at ${p.name}` : `Notary visits at ${p.name}`} lead={p.intro} image={p.image} />
+      {hosp && (
+        <section className="band">
+          <div className="wrap narrow prose">
+            <h2>Looking for a notary at {p.short}?</h2>
+            <p>Families search for a {p.aliases?.[0]?.toLowerCase() || "hospital notary"} when a loved one is admitted and paperwork can't wait. Stratton Collective is a mobile notary based in Gainesville. We come to {p.name} at {p.address}, check in at the front desk, and meet the patient in their room, a family lounge or wherever the care team allows.</p>
+            <p>Most visits to {p.short} happen the same day, and we often arrive within the hour for urgent signings. We bring two witnesses when the document needs them, print documents you email us, and can include family members who are out of town by video.</p>
+            <h3>What families sign at {p.short}</h3>
+            <ul>
+              <li>Durable power of attorney so someone can handle bills, banking and property</li>
+              <li>Designation of healthcare surrogate and living will</li>
+              <li>HIPAA authorization so doctors can talk to family</li>
+              <li>Will and self-proving affidavit</li>
+              <li>Vehicle titles, deeds and other paperwork that can't wait for discharge</li>
+            </ul>
+            {p.aliases && <p className="muted small">Also searched as: {p.aliases.join(", ")}.</p>}
+          </div>
+        </section>
+      )}
       <Split image={hosp ? IMG.holdingHands : IMG.manSigning} title={`How a notary visit works at ${p.short}`}>
         <ul>{p.notes.map((n) => <li key={n}>{n}</li>)}</ul>
         <Bring items={hosp ? ["Patient's government photo ID", "Unsigned documents, or email them and we print", "Room number, unit and any visitor rules", "Two witnesses if needed, or ask us to bring them"] : ["Inmate's full name and booking or inmate number", "The unsigned documents", "Who will receive the signed original"]} />
