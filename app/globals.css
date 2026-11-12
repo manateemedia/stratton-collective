@@ -17,7 +17,7 @@
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; font-family: var(--sans); color: var(--text); font-size: 17px; line-height: 1.6; background: var(--paper); padding-bottom: 76px; }
 @media (min-width: 900px) { body { padding-bottom: 0; } }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--ink); text-underline-offset: 3px; }
 :focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink-deep); line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
@@ -238,17 +238,86 @@ p { margin: 0 0 1em; }
 .facts-bar { position: relative; background: #fff; border-bottom: 1px solid var(--line); padding: 16px 0; }
 .facts-bar .facts { justify-content: center; }
 
-/* that easy */
-.easy-h { max-width: 18em; }
-.easy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
-@media (max-width: 860px) { .easy-grid { grid-template-columns: 1fr; } }
-.easy-card { border: 1px solid var(--line); border-top: 4px solid var(--ink); border-radius: 6px; padding: 30px; background: #fff; }
-.easy-kind { color: var(--brass); font-weight: 700; margin-bottom: 4px; }
-.easy-card h3 { font-size: 1.6rem; margin-bottom: 18px; }
-.easy-steps { list-style: none; padding: 0; margin: 0 0 20px; }
-.easy-steps li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); color: #3b4055; }
-.easy-steps span { font-family: var(--serif); font-size: 1.15rem; color: var(--ink-deep); }
-.easy-promise { font-weight: 600; color: var(--ink-deep); font-size: 1.05rem; margin-bottom: 20px; }
 .tile-text { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 18px; background: var(--ink); color: #dfe3f3; font-size: .95rem; line-height: 1.4; }
 .tile-text::after { display: none; }
 .tile-text-h { font-family: var(--serif); font-size: 1.35rem; color: #fff; }
+
+/* ---------- mobile fixes ---------- */
+html, body { overflow-x: clip; max-width: 100%; }
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 18px; }
+  .band { padding: 56px 0; }
+  h1 { font-size: 2rem; }
+  .home-hero h1 { font-size: 2.1rem; }
+  .lead, .home-hero .lead { font-size: 1.05rem; }
+  .btn { white-space: normal; text-align: center; }
+  .cta-row .btn { flex: 1 1 100%; }
+  .btn-call { font-size: 1rem; }
+  /* shorter photos on phones */
+  .hero { padding: 28px 0 40px; }
+  .hero-grid { gap: 24px; }
+  .hero-media .photo { aspect-ratio: 16 / 10; max-height: 240px; }
+  .hero-seal-link { right: 8px; bottom: -28px; }
+  .hero-seal { width: 92px; height: 92px; }
+  .split-media .photo { aspect-ratio: 16 / 9; max-height: 220px; }
+  .price-photo { display: none; }
+  .area-card .photo { aspect-ratio: 16 / 9; }
+  .tile { aspect-ratio: 1 / .85; }
+  .tile-label { font-size: 1rem; left: 10px; right: 10px; bottom: 8px; }
+  .tiles-3 .tile, .tiles .tile-text { aspect-ratio: auto; min-height: 150px; }
+  .cta-inner { padding: 56px 18px; }
+  /* facts wrap instead of pushing the page sideways */
+  .home-hero-in { padding-top: 28px; padding-bottom: 40px; }
+  .needs-card { padding: 20px; }
+  .needs-title { font-size: 1.25rem; }
+  .need { min-height: 46px; font-size: .92rem; }
+  .big-num { font-size: 3.4rem; }
+  .quote blockquote { font-size: 1.08rem; }
+  .fee-sheet { padding: 22px 18px; }
+  .fee-sheet td { font-size: 1.15rem; }
+  .facility-list { grid-template-columns: 1fr; }
+  .table { display: block; overflow-x: auto; }
+  .brand-text small { white-space: normal; }
+}
+
+.hero-grid, .home-hero-in, .split, .price-wrap, .easy-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.hero-grid > *, .home-hero-in > *, .split > *, .price-wrap > *, .easy-grid > * { min-width: 0; }
+.home-hero h1 { margin-top: 0; }
+@media (max-width: 960px) { .hero-grid, .home-hero-in, .split, .price-wrap, .easy-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .easy-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) { .nav .nav-cta, .nav .nav-phone { display: none; } }
+@media (max-width: 700px) { .hero-seal-link { display: none; } }
+
+/* fix: photos keep their shape on every screen */
+.photo { width: 100%; height: auto; }
+
+/* hero fact chips */
+.facts-light { margin-top: 22px; gap: 8px; flex-direction: row !important; }
+.facts-light li { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 6px 12px; color: #e8ebf7; font-size: .85rem; white-space: nowrap !important; }
+.facts-light svg { color: #e3be6a; }
+
+/* book in two minutes */
+.easy { background: var(--ink-deep); padding: 80px 0; }
+.easy-h { color: #fff; max-width: 16em; }
+.easy-grid { display: grid; gap: 24px; margin-top: 32px; }
+.easy-card { background: #fff; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.easy-photo { position: relative; }
+.easy-photo .photo { aspect-ratio: 2 / 1; object-fit: cover; }
+.easy-kind { position: absolute; left: 16px; top: 16px; background: #c9a23f; color: #161b42; font-weight: 700; font-size: .85rem; padding: 5px 12px; border-radius: 999px; }
+.easy-body { padding: 24px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+.easy-body h3 { font-size: 1.7rem; margin-bottom: 14px; }
+.easy-steps { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 10px; }
+.easy-steps li { display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--ink-deep); }
+.easy-steps span { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--mist); color: var(--ink); display: grid; place-items: center; font-family: var(--serif); font-size: 1rem; }
+.easy-promise { color: #3b4055; margin-bottom: 20px; flex: 1; }
+.easy-body .btn { align-self: flex-start; }
+@media (max-width: 700px) {
+  .easy { padding: 56px 0; }
+  .easy-photo .photo { aspect-ratio: 5 / 2; }
+  .easy-body { padding: 20px; }
+  .easy-body h3 { font-size: 1.45rem; }
+  .easy-body .btn { align-self: stretch; }
+  .facts-light li { font-size: .8rem; padding: 5px 10px; }
+}
+@media (max-width: 700px) { .facts-light { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .facts-light li { white-space: normal !important; justify-content: flex-start; line-height: 1.25; } }

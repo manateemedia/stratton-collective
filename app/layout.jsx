@@ -16,7 +16,7 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport = { themeColor: "#262f6b" };
+export const viewport = { width: "device-width", initialScale: 1, themeColor: "#262f6b" };
 
 const business = {
   "@context": "https://schema.org",

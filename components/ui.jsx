@@ -4,7 +4,6 @@ import { TOWNS } from "@/lib/towns";
 import { SERVICES } from "@/lib/services";
 import { PLACE_HUBS, HOSPITALS, JAILS } from "@/lib/places";
 import { IMG, img, srcSet } from "@/lib/images";
-import OpenNow from "@/components/OpenNow";
 
 export function JsonLd({ data }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
@@ -162,7 +161,7 @@ export function Icon({ name, size = 18 }) {
 export function PhoneIcon() { return <Icon name="phone" size={18} />; }
 
 export function Facts({ light = false }) {
-  const items = [["clock", "Open 7 days, 8am to 8pm"], ["bolt", "Emergency visits within the hour"], ["people", "Witnesses brought to you"], ["shield", "Florida commissioned and RON certified"]];
+  const items = [["clock", "7 days, 8am to 8pm"], ["bolt", "Emergency within the hour"], ["people", "Witnesses available"], ["shield", "Florida commissioned"]];
   return (
     <ul className={`facts ${light ? "facts-light" : ""}`}>
       {items.map(([i, t]) => <li key={t}><Icon name={i} size={17} />{t}</li>)}
@@ -190,7 +189,6 @@ export function HomeHero() {
       <div className="home-hero-bg"><Photo image={IMG.twoWomenSigning} ratio={0.5} priority sizes="100vw" /></div>
       <div className="wrap home-hero-in">
         <div className="home-hero-copy">
-          <OpenNow />
           <h1>Need something notarized today? We'll come to you.</h1>
           <p className="lead">Tell us the time, the place and what you're signing. One of our notaries will be there. Home, office, hospital bed or jail, anywhere in Alachua County. Or pick a time to sign online and we'll be ready.</p>
           <div className="cta-row">
@@ -201,6 +199,7 @@ export function HomeHero() {
             <span className="stars" aria-hidden>★★★★★</span>
             <span><strong>{SITE.rating}</strong> from {SITE.reviewCount} Google reviews</span>
           </a>
+          <Facts light />
         </div>
         <div className="needs-card">
           <p className="needs-title">What do you need notarized?</p>
@@ -210,33 +209,31 @@ export function HomeHero() {
           <p className="needs-foot">Not sure? Call or text and tell us what you have. We'll tell you what Florida requires.</p>
         </div>
       </div>
-      <div className="facts-bar"><div className="wrap"><Facts /></div></div>
     </section>
   );
 }
 
 export function ThatEasy() {
-  const mobile = [["When", "Pick the day and time that works for you."], ["Where", "Home, office, hospital, care home or jail. Give us the address."], ["What", "Tell us the documents and how many people are signing."]];
-  const online = [["When", "Pick the time you want to sign."], ["What", "Upload your document as a PDF."], ["Join", "Open the link from any phone or laptop."]];
+  const cards = [
+    { kind: "In person", title: "We come to you", image: IMG.stampOnDoc, steps: ["Pick a day and time", "Give us the address", "Tell us what you're signing"], promise: "One of our notaries shows up with the stamp, a printer and witnesses if you need them.", href: SITE.bookMobile, cta: "Book a mobile notary" },
+    { kind: "Online", title: "Sign from anywhere", image: IMG.videoCall, steps: ["Pick a time", "Upload your PDF", "Open the video link"], promise: "A Florida online notary is waiting on the call at your time. Done in minutes.", href: SITE.bookOnline, cta: "Book an online notary" },
+  ];
   return (
-    <section className="band easy">
+    <section className="easy">
       <div className="wrap">
-        <h2 className="easy-h">Book it in two minutes. We handle the rest.</h2>
+        <h2 className="easy-h">Book in two minutes. We handle the rest.</h2>
         <div className="easy-grid">
-          <div className="easy-card">
-            <p className="easy-kind">In person</p>
-            <h3>You tell us three things</h3>
-            <ol className="easy-steps">{mobile.map(([k, v]) => <li key={k}><span>{k}</span>{v}</li>)}</ol>
-            <p className="easy-promise">One of our notaries shows up with the stamp, a printer and witnesses if you need them. That's it.</p>
-            <a className="btn btn-ink" href={SITE.bookMobile}>Book a mobile notary</a>
-          </div>
-          <div className="easy-card">
-            <p className="easy-kind">Online</p>
-            <h3>You tell us when</h3>
-            <ol className="easy-steps">{online.map(([k, v]) => <li key={k}><span>{k}</span>{v}</li>)}</ol>
-            <p className="easy-promise">A Florida online notary will be waiting on the video call at your time. Your notarized PDF is ready the moment you finish.</p>
-            <a className="btn btn-ink" href={SITE.bookOnline}>Book an online notary</a>
-          </div>
+          {cards.map((c) => (
+            <div className="easy-card" key={c.kind}>
+              <div className="easy-photo"><Photo image={c.image} ratio={0.5} sizes="(max-width: 860px) 100vw, 50vw" /><span className="easy-kind">{c.kind}</span></div>
+              <div className="easy-body">
+                <h3>{c.title}</h3>
+                <ol className="easy-steps">{c.steps.map((st, n) => <li key={st}><span>{n + 1}</span>{st}</li>)}</ol>
+                <p className="easy-promise">{c.promise}</p>
+                <a className="btn btn-call" href={c.href}>{c.cta}</a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
