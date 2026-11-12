@@ -346,3 +346,20 @@ html, body { overflow-x: clip; max-width: 100%; }
   .need { flex: none; scroll-snap-align: start; min-height: 44px; border-radius: 999px; padding: 8px 16px; background: var(--ink); color: #fff; border-color: var(--ink); white-space: nowrap; }
   .need:nth-child(odd) { background: #fff; color: var(--ink-deep); border-color: var(--ink); }
 }
+
+/* ---------- hero note + need list ---------- */
+.hero-note { margin: 10px 0 0; font-size: .95rem; color: #c9cfe6; }
+.need-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
+.need-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink-deep); font-weight: 600; font-size: .95rem; line-height: 1.25; }
+.need-row img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; flex: none; background: var(--mist); }
+.need-row span { flex: 1; }
+.need-row svg { color: var(--brass); flex: none; transition: transform .15s; }
+.need-row:hover svg { transform: translateX(3px); }
+.need-row:hover span { text-decoration: underline; }
+.need-all { display: inline-block; margin-top: 14px; font-weight: 700; color: var(--ink); }
+@media (max-width: 700px) {
+  .hero-note { color: var(--muted); font-size: .92rem; }
+  .need-list { grid-template-columns: 1fr; }
+  .need-row { padding: 12px 0; font-size: 1rem; }
+  .need-row img { width: 48px; height: 48px; }
+}

@@ -170,16 +170,14 @@ export function Facts({ light = false }) {
 }
 
 const NEEDS = [
-  ["Power of attorney", "/power-of-attorney-in-florida"],
-  ["Someone is in the hospital", "/hospital-notary-gainesville"],
-  ["Nursing home or hospice", "/nursing-home-notary-gainesville"],
-  ["Home sale or deed", "/real-estate"],
-  ["Will or trust", "/will-and-estate-notary"],
-  ["Divorce papers", "/divorce-documents-notary"],
-  ["Apostille for overseas", "/apostille"],
-  ["Jail or prison visit", "/jail-notary-gainesville"],
-  ["Sign online by video", "/online-notary"],
-  ["Something else", "/services"],
+  ["Power of attorney", "/power-of-attorney-in-florida", IMG.holdingHands],
+  ["Someone is in the hospital", "/hospital-notary-gainesville", IMG.hospitalRoom],
+  ["Nursing home or hospice", "/nursing-home-notary-gainesville", IMG.seniorCouple],
+  ["Home sale or deed", "/real-estate", IMG.houseKeys],
+  ["Will or trust", "/will-and-estate-notary", IMG.lastWill],
+  ["Divorce papers", "/divorce-documents-notary", IMG.reviewingDocs],
+  ["Apostille for overseas", "/apostille", IMG.passport],
+  ["Jail or prison visit", "/jail-notary-gainesville", IMG.courthouse],
 ];
 
 // Home hero: full-bleed photo, live status, big call button and a "what do you need" picker.
@@ -203,14 +201,23 @@ export function HomeHero() {
             <span className="stars" aria-hidden>★★★★★</span>
             <span><strong>{SITE.rating}</strong> from {SITE.reviewCount} Google reviews</span>
           </a>
-          <Facts light />
+          <p className="hero-note">Open 7 days, 8am to 8pm. Emergency visits within the hour.</p>
         </div>
         <div className="needs-card">
           <p className="needs-title">What do you need notarized?</p>
           <p className="needs-sub">Tell us when, where and what. One of our notaries will be there.</p>
-          <div className="needs">
-            {NEEDS.map(([t, href]) => <Link key={href} href={href} className="need">{t}</Link>)}
-          </div>
+          <ul className="need-list">
+            {NEEDS.map(([t, href, im]) => (
+              <li key={href}>
+                <Link href={href} className="need-row">
+                  <img src={img(im, 120, 120)} alt="" width={44} height={44} loading="lazy" />
+                  <span>{t}</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link href="/services" className="need-all">See every document we notarize</Link>
         </div>
       </div>
     </section>
