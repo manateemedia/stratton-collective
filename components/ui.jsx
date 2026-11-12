@@ -178,6 +178,7 @@ const NEEDS = [
   ["Divorce papers", "/divorce-documents-notary", IMG.reviewingDocs],
   ["Apostille for overseas", "/apostille", IMG.passport],
   ["Jail or prison visit", "/jail-notary-gainesville", IMG.courthouse],
+  ["Something else", "/contact", IMG.paperStack],
 ];
 
 // Home hero: full-bleed photo, live status, big call button and a "what do you need" picker.
@@ -307,6 +308,10 @@ export function DocTiles({ title = "What are you signing?", limit }) {
             <Photo image={IMG.centuryTower} ratio={0.7} sizes="(max-width: 700px) 50vw, 25vw" />
             <span className="tile-label">UF employee forms</span>
           </Link>
+          <Link href="/contact" className="tile tile-text">
+            <span className="tile-text-h">Other document</span>
+            <span>Don't see yours? Call or text and tell us what you have. If it needs a notary, we can do it.</span>
+          </Link>
         </div>
       </div>
     </section>
@@ -326,9 +331,9 @@ export function PlaceTiles({ title = "Where should we meet you?", lead = "Your h
               <span className="tile-label">{h.title}</span>
             </Link>
           ))}
-          <Link href="/mobile-notary" className="tile tile-text">
-            <span className="tile-text-h">Anywhere else</span>
-            <span>Church, school, a friend's house, a construction site. If it's in Alachua County, we'll be there.</span>
+          <Link href="/contact" className="tile tile-text">
+            <span className="tile-text-h">Other place</span>
+            <span>Church, school, a friend's house, a job site. Tell us where and we'll be there.</span>
           </Link>
         </div>
       </div>
