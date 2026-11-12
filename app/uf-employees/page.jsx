@@ -1,4 +1,5 @@
 import { Hero, Faq, CtaBand, Breadcrumbs } from "@/components/ui";
+import { IMG } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 export const metadata = {
@@ -24,8 +25,8 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs items={[{ name: "UF Employees", path: "/uf-employees" }]} />
-      <Hero primary="online" eyebrow="For UF faculty and staff" title="UF HR forms that need a notary" sub="New hire, moving to Gainesville, or updating benefits? Get your UF forms notarized online or in person today." />
-      <section className="section">
+      <Hero primary="online" kicker="For UF faculty and staff" title="UF HR forms that need a notary" lead="New hire, moving to Gainesville, or updating benefits? Get your UF forms notarized online or in person today." image={IMG.centuryTower} />
+      <section className="band">
         <div className="wrap">
           <h2>Three steps</h2>
           <p>1. Download your form from UF HR. 2. Fill it out but do not sign. 3. Book an online or mobile appointment.</p>
@@ -41,8 +42,8 @@ export default function Page() {
             </tbody>
           </table>
           <div className="cta-row">
-            <a className="btn btn-gold" href={SITE.bookOnline}>Book online notary</a>
-            <a className="btn btn-light" href="/contact">Ask about I-9 help</a>
+            <a className="btn btn-ink" href={SITE.bookOnline}>Book online notary</a>
+            <a className="btn btn-line" href="/contact">Ask about I-9 help</a>
           </div>
         </div>
       </section>

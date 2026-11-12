@@ -1,4 +1,5 @@
-import { Breadcrumbs } from "@/components/ui";
+import { Hero, Breadcrumbs, AreaLinks } from "@/components/ui";
+import { IMG } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
 export const metadata = {
@@ -11,38 +12,33 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} />
-      <section className="hero">
-        <div className="wrap hero-in">
-          <div className="eyebrow">Contact</div>
-          <h1>Talk to a notary today</h1>
-          <p className="lead">The fastest way to reach us is a call or text. We reply to emails within 24 hours.</p>
-        </div>
-      </section>
-      <section className="section">
-        <div className="wrap grid3">
-          <div className="card">
+      <Hero kicker="Contact" title="Talk to a notary today" lead="The fastest way to reach us is a call or text. Emails get a reply within 24 hours." image={IMG.penOnPaper} />
+      <section className="band">
+        <div className="wrap cards">
+          <div className="card-plain">
             <h3>Call or text</h3>
             <p><a href={SITE.phoneHref}>{SITE.phone}</a></p>
             <div className="cta-row">
-              <a className="btn btn-gold" href={SITE.phoneHref}>Call</a>
-              <a className="btn btn-light" href={SITE.smsHref}>Text</a>
+              <a className="btn btn-ink" href={SITE.phoneHref}>Call</a>
+              <a className="btn btn-line" href={SITE.smsHref}>Text</a>
             </div>
           </div>
-          <div className="card">
+          <div className="card-plain">
             <h3>Email</h3>
             <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
-            <p className="small muted">Tell us the document, the number of signers and where you are.</p>
+            <p className="small muted">Tell us the document, how many people are signing and where you are.</p>
           </div>
-          <div className="card">
+          <div className="card-plain">
             <h3>Book online</h3>
             <p>{SITE.hoursText}. Based in Gainesville, FL, serving Alachua County in person and anywhere online.</p>
             <div className="cta-row">
-              <a className="btn btn-gold" href={SITE.bookMobile}>Mobile</a>
-              <a className="btn btn-light" href={SITE.bookOnline}>Online</a>
+              <a className="btn btn-ink" href={SITE.bookMobile}>Mobile</a>
+              <a className="btn btn-line" href={SITE.bookOnline}>Online</a>
             </div>
           </div>
         </div>
       </section>
+      <AreaLinks />
     </>
   );
 }

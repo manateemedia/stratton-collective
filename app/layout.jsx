@@ -16,7 +16,7 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport = { themeColor: "#14233c" };
+export const viewport = { themeColor: "#262f6b" };
 
 const business = {
   "@context": "https://schema.org",
@@ -44,12 +44,22 @@ const business = {
     "Apostille assistance",
     "Hospital notary",
   ].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
+  aggregateRating: undefined,
   ...(SITE.sameAs.length ? { sameAs: SITE.sameAs } : {}),
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600;700&display=swap"
+        />
+      </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>
         <Header />
