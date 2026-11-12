@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Hero, Split, Pricing, Reviews, Faq, CtaBand, Breadcrumbs, AreaLinks, JsonLd, Bring, DocTiles, FacilityList, PlaceTiles } from "@/components/ui";
-import { HOSPITALS, JAILS, placeBySlug, isHospital } from "@/lib/places";
+import { HOSPITALS, JAILS, EVERYDAY, placeBySlug, isHospital, everydayBySlug } from "@/lib/places";
 import { TOWNS, townBySlug } from "@/lib/towns";
 import { SERVICES, serviceBySlug } from "@/lib/services";
 import { IMG } from "@/lib/images";
@@ -22,13 +22,15 @@ const TOWN_IMAGES = {
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return [...TOWNS, ...SERVICES, ...HOSPITALS, ...JAILS].map((x) => ({ slug: x.slug }));
+  return [...TOWNS, ...SERVICES, ...HOSPITALS, ...JAILS, ...EVERYDAY].map((x) => ({ slug: x.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const s = serviceBySlug(slug);
   if (s) return { title: { absolute: `${s.title} | Stratton Collective` }, description: s.description, alternates: { canonical: `/${s.slug}` } };
+  const ev = everydayBySlug(slug);
+  if (ev) return { title: { absolute: `${ev.title} | Stratton Collective` }, description: ev.description, alternates: { canonical: `/${ev.slug}` } };
   const pl = placeBySlug(slug);
   if (pl) {
     const hosp = isHospital(pl);
@@ -52,6 +54,8 @@ export default async function Page({ params }) {
   const { slug } = await params;
   const s = serviceBySlug(slug);
   if (s) return <ServicePage s={s} />;
+  const ev = everydayBySlug(slug);
+  if (ev) return <EverydayPage e={ev} />;
   const pl = placeBySlug(slug);
   if (pl) return <PlacePage p={pl} />;
   const t = townBySlug(slug);
@@ -172,6 +176,30 @@ function PlacePage({ p }) {
         </div>
       </section>
       <CtaBand title={hosp ? `Need a notary at ${p.short}?` : "Need a jail notary?"} />
+    </>
+  );
+}
+
+function EverydayPage({ e }) {
+  const faqs = [
+    ["How much does it cost?", "Scheduled visits start at $75, next day from $125, same day $200 flat and within the hour $275 flat within 20 miles of Gainesville. Witnesses are $30 each."],
+    ["How soon can you meet me?", "Most days, the same day. Call or text for the fastest answer, or book online and we confirm within the hour."],
+    ["What do I need to bring?", "A current government photo ID for every signer and your documents, unsigned."],
+  ];
+  return (
+    <>
+      <Breadcrumbs items={[{ name: "Places we go", path: "/places" }, { name: e.short, path: `/${e.slug}` }]} />
+      <Hero kicker="Mobile notary" title={e.h1} lead={e.lead} image={e.image} />
+      <Split image={e.side} title="Great for">
+        <ul>{e.good.map((g) => <li key={g}>{g}</li>)}</ul>
+        <Bring items={e.tips} />
+      </Split>
+      <Pricing tone="tone-mist" />
+      <DocTiles title="What we can notarize there" limit={8} />
+      <Reviews count={3} />
+      <Faq items={faqs} />
+      <PlaceTiles title="Other places we meet" />
+      <CtaBand />
     </>
   );
 }

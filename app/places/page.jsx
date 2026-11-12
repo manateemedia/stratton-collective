@@ -12,8 +12,8 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs items={[{ name: "Places we go", path: "/places" }]} />
-      <Hero kicker="Places we go" title="Hospitals, jails and care homes" lead="Some of the most important signings happen where people cannot leave. We know the rules at each facility and come prepared." image={IMG.hospitalLobby} />
-      <PlaceTiles title="Choose a type of place" lead="Each page explains how a notary visit works there." />
+      <Hero kicker="Places we go" title="We meet you wherever you are" lead="Your home, your office, a coffee shop, a parking lot, a hospital bed or a jail visiting room. Tell us where, and one of our notaries will be there." image={IMG.hospitalLobby} />
+      <PlaceTiles title="Choose a place" lead="Each page explains how a visit works there." />
       <section className="band">
         <div className="wrap">
           <h2>Hospitals</h2>

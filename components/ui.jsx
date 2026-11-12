@@ -303,19 +303,23 @@ export function DocTiles({ title = "What are you signing?", limit }) {
   );
 }
 
-export function PlaceTiles({ title = "Places we go", lead = "Hospitals, jails and care homes have their own rules. We know them, and we come to the bedside or the visiting room." }) {
+export function PlaceTiles({ title = "Where should we meet you?", lead = "Your home, your office, a coffee shop or a parking lot. And when someone can't leave, we come to the hospital bed, the care home or the jail visiting room." }) {
   return (
     <section className="band tone-mist">
       <div className="wrap">
         <h2>{title}</h2>
         <p className="muted section-lead">{lead}</p>
-        <div className="tiles tiles-3">
+        <div className="tiles">
           {PLACE_HUBS.map((h) => (
             <Link key={h.slug} href={`/${h.slug}`} className="tile">
               <Photo image={h.image} ratio={0.7} sizes="(max-width: 700px) 100vw, 33vw" />
               <span className="tile-label">{h.title}</span>
             </Link>
           ))}
+          <Link href="/mobile-notary" className="tile tile-text">
+            <span className="tile-text-h">Anywhere else</span>
+            <span>Church, school, a friend's house, a construction site. If it's in Alachua County, we'll be there.</span>
+          </Link>
         </div>
       </div>
     </section>
