@@ -190,7 +190,7 @@ export function HomeHero() {
         <div className="home-hero-copy">
           <OpenNow />
           <h1>Need something notarized today? We'll come to you.</h1>
-          <p className="lead">Gainesville's 5-star mobile notary. Home, office, hospital bed or jail, anywhere in Alachua County, often within a few hours. Or sign online by video in minutes.</p>
+          <p className="lead">Tell us the time, the place and what you're signing. One of our notaries will be there. Home, office, hospital bed or jail, anywhere in Alachua County. Or pick a time to sign online and we'll be ready.</p>
           <div className="cta-row">
             <a className="btn btn-call" href={SITE.phoneHref}><PhoneIcon /> Call or text {SITE.phone}</a>
             <a className="btn btn-paper" href={SITE.bookMobile}>Book online</a>
@@ -209,6 +209,34 @@ export function HomeHero() {
         </div>
       </div>
       <div className="facts-bar"><div className="wrap"><Facts /></div></div>
+    </section>
+  );
+}
+
+export function ThatEasy() {
+  const mobile = [["When", "Pick the day and time that works for you."], ["Where", "Home, office, hospital, care home or jail. Give us the address."], ["What", "Tell us the documents and how many people are signing."]];
+  const online = [["When", "Pick the time you want to sign."], ["What", "Upload your document as a PDF."], ["Join", "Open the link from any phone or laptop."]];
+  return (
+    <section className="band easy">
+      <div className="wrap">
+        <h2 className="easy-h">Book it in two minutes. We handle the rest.</h2>
+        <div className="easy-grid">
+          <div className="easy-card">
+            <p className="easy-kind">In person</p>
+            <h3>You tell us three things</h3>
+            <ol className="easy-steps">{mobile.map(([k, v]) => <li key={k}><span>{k}</span>{v}</li>)}</ol>
+            <p className="easy-promise">One of our notaries shows up with the stamp, a printer and witnesses if you need them. That's it.</p>
+            <a className="btn btn-ink" href={SITE.bookMobile}>Book a mobile notary</a>
+          </div>
+          <div className="easy-card">
+            <p className="easy-kind">Online</p>
+            <h3>You tell us when</h3>
+            <ol className="easy-steps">{online.map(([k, v]) => <li key={k}><span>{k}</span>{v}</li>)}</ol>
+            <p className="easy-promise">A Florida online notary will be waiting on the video call at your time. Your notarized PDF is ready the moment you finish.</p>
+            <a className="btn btn-ink" href={SITE.bookOnline}>Book an online notary</a>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

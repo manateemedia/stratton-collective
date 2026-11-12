@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HomeHero, Split, DocTiles, PlaceTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
+import { HomeHero, ThatEasy, Split, DocTiles, PlaceTiles, Reviews, Pricing, Steps, Faq, CtaBand, AreaLinks, BookButtons } from "@/components/ui";
 import { IMG } from "@/lib/images";
 import { SITE } from "@/lib/site";
 
@@ -23,6 +23,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      <ThatEasy />
 
       <DocTiles />
       <PlaceTiles />
@@ -55,18 +56,6 @@ export default function Home() {
         </div>
       </Split>
 
-      <section className="band">
-        <div className="wrap">
-          <h2>How it works</h2>
-          <Steps
-            items={[
-              ["Book a time", "Pick a time online or call or text. We confirm within the hour."],
-              ["Have your ID ready", "Bring a current photo ID and your unsigned documents. Email them and we print."],
-              ["Sign and you're done", "We check ID, witness your signature, stamp and record it. Usually 15 minutes."],
-            ]}
-          />
-        </div>
-      </section>
 
       <Pricing tone="tone-mist" />
 

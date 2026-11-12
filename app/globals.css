@@ -237,3 +237,15 @@ p { margin: 0 0 1em; }
 @media (max-width: 1200px) { .home-seal { display: none; } }
 .facts-bar { position: relative; background: #fff; border-bottom: 1px solid var(--line); padding: 16px 0; }
 .facts-bar .facts { justify-content: center; }
+
+/* that easy */
+.easy-h { max-width: 18em; }
+.easy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 32px; }
+@media (max-width: 860px) { .easy-grid { grid-template-columns: 1fr; } }
+.easy-card { border: 1px solid var(--line); border-top: 4px solid var(--ink); border-radius: 6px; padding: 30px; background: #fff; }
+.easy-kind { color: var(--brass); font-weight: 700; margin-bottom: 4px; }
+.easy-card h3 { font-size: 1.6rem; margin-bottom: 18px; }
+.easy-steps { list-style: none; padding: 0; margin: 0 0 20px; }
+.easy-steps li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); color: #3b4055; }
+.easy-steps span { font-family: var(--serif); font-size: 1.15rem; color: var(--ink-deep); }
+.easy-promise { font-weight: 600; color: var(--ink-deep); font-size: 1.05rem; margin-bottom: 20px; }
