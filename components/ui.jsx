@@ -62,7 +62,7 @@ export function Header() {
           <Link href="/mobile-notary">Mobile</Link>
           <Link href="/online-notary">Online</Link>
           <Link href="/services">Documents</Link>
-          <Link href="/places">Places we go</Link>
+          <Link href="/places">Places</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/service-areas">Areas</Link>
           <Link href="/reviews">Reviews</Link>
