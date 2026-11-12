@@ -196,3 +196,5 @@ p { margin: 0 0 1em; }
 .facility-list span { color: var(--muted); font-size: .93rem; }
 .footer-gap { margin-bottom: 22px !important; }
 .disclaimer { font-size: .85rem; color: var(--muted); margin-top: 18px; }
+.big-price { font-family: var(--serif); font-size: 3rem; color: var(--ink-deep); margin: 8px 0 12px; line-height: 1; }
+.big-price span { font-family: var(--sans); font-size: 1rem; color: var(--muted); }

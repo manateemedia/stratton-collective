@@ -33,7 +33,7 @@ export async function generateMetadata({ params }) {
   if (pl) {
     const hosp = isHospital(pl);
     return {
-      title: { absolute: hosp ? `Notary at ${pl.short} | Bedside Notary, Same Day | Stratton Collective` : `${pl.short} Notary | Notary Visits for Inmates | Stratton Collective` },
+      title: { absolute: hosp ? `Notary at ${pl.short} | Bedside Notary, Same Day | Stratton Collective` : `${pl.short} Notary | $175 Inmate Notary Visits | Stratton Collective` },
       description: `${pl.intro} ${pl.address}. Call ${SITE.phone}.`.slice(0, 300),
       alternates: { canonical: `/${pl.slug}` },
     };
@@ -132,6 +132,7 @@ function PlacePage({ p }) {
     : [
         [`How do I set up a notary visit at ${p.short}?`, "Call or text with the inmate's full name, booking or inmate number and the document. We confirm the facility's rules and the soonest time."],
         ["Can the inmate's ID be used?", "The facility decides how property IDs are handled. We plan identification with staff before the visit."],
+        ["How much does it cost?", "$175 per visit. Witnesses, if your document needs them, are $30 each."],
         ["Who gets the signed document?", "Tell us who should receive the original. We can hand it to family, an attorney or mail it."],
       ];
   return (
@@ -151,7 +152,16 @@ function PlacePage({ p }) {
           </div>
         </section>
       )}
-      {hosp && <Pricing title="Hospital notary pricing" tone="tone-mist" />}
+      {hosp ? <Pricing title="Hospital notary pricing" tone="tone-mist" /> : (
+        <section className="band tone-mist">
+          <div className="wrap narrow">
+            <h2>Jail and prison notary pricing</h2>
+            <p className="big-price">$175 <span>per visit</span></p>
+            <p>Covers travel, facility check-in and wait time. Witnesses are $30 each if your document needs them.</p>
+            <a className="btn btn-ink" href={SITE.phoneHref}>Call or text to schedule</a>
+          </div>
+        </section>
+      )}
       <Reviews count={3} />
       <Faq items={faqs} />
       <section className="band">
