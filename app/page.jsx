@@ -23,7 +23,6 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <DocTiles />
       <ThatEasy />
       <PlaceTiles />
 
