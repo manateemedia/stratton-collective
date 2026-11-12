@@ -4,6 +4,7 @@ import { TOWNS } from "@/lib/towns";
 import { SERVICES } from "@/lib/services";
 import { PLACE_HUBS, HOSPITALS, JAILS } from "@/lib/places";
 import { IMG, img, srcSet } from "@/lib/images";
+import MobileMenu from "@/components/MobileMenu";
 
 export function JsonLd({ data }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
@@ -69,6 +70,7 @@ export function Header() {
         </nav>
         <a className="nav-phone" href={SITE.phoneHref}>{SITE.phone}</a>
         <a className="btn btn-ink nav-cta" href={SITE.bookMobile}>Book a notary</a>
+        <MobileMenu phone={SITE.phone} phoneHref={SITE.phoneHref} bookHref={SITE.bookMobile} />
       </div>
     </header>
   );
