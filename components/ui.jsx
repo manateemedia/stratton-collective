@@ -176,9 +176,11 @@ const NEEDS = [
   ["Nursing home or hospice", "/nursing-home-notary-gainesville"],
   ["Home sale or deed", "/real-estate"],
   ["Will or trust", "/will-and-estate-notary"],
+  ["Divorce papers", "/divorce-documents-notary"],
   ["Apostille for overseas", "/apostille"],
   ["Jail or prison visit", "/jail-notary-gainesville"],
   ["Sign online by video", "/online-notary"],
+  ["Something else", "/services"],
 ];
 
 // Home hero: full-bleed photo, live status, big call button and a "what do you need" picker.
