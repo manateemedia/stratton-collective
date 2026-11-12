@@ -5,6 +5,7 @@ import { SERVICES } from "@/lib/services";
 import { PLACE_HUBS, HOSPITALS, JAILS } from "@/lib/places";
 import { IMG, img, srcSet } from "@/lib/images";
 import MobileMenu from "@/components/MobileMenu";
+import ReviewCarousel from "@/components/ReviewCarousel";
 
 export function JsonLd({ data }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
@@ -357,32 +358,26 @@ export function FacilityList({ items, linkBase = true }) {
   );
 }
 
-export function Reviews({ count = 6 }) {
+export function Reviews({ count }) {
+  const list = count ? REVIEWS.slice(0, Math.max(count, 6)) : REVIEWS;
   return (
-    <section className="band tone-ink" id="reviews">
+    <section className="band tone-mist" id="reviews">
       <div className="wrap">
         <div className="reviews-head">
-          <div className="big-rating">
-            <span className="big-num">{SITE.rating}</span>
-            <span>
-              <span className="stars" aria-hidden>★★★★★</span>
-              <br />
-              {SITE.reviewCount} reviews on Google
-            </span>
+          <div>
+            <h2>What clients say on Google</h2>
+            <div className="big-rating">
+              <span className="big-num">{SITE.rating}</span>
+              <span>
+                <span className="stars" aria-hidden>★★★★★</span>
+                <br />
+                <a href={SITE.googleReviews} target="_blank" rel="noopener">{SITE.reviewCount} reviews on Google</a>
+              </span>
+            </div>
           </div>
-          <div className="cta-row">
-            <a className="btn btn-paper" href={SITE.googleReviews}>Read them on Google</a>
-            <a className="btn btn-line-light" href={SITE.googleWriteReview}>Write a review</a>
-          </div>
+          <a className="btn btn-ink" href={SITE.googleWriteReview} target="_blank" rel="noopener">Review us on Google</a>
         </div>
-        <div className="quotes">
-          {REVIEWS.slice(0, count).map((r) => (
-            <figure className="quote" key={r.name}>
-              <blockquote>“{r.text}”</blockquote>
-              <figcaption>{r.name}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <ReviewCarousel reviews={list} googleUrl={SITE.googleReviews} />
       </div>
     </section>
   );
